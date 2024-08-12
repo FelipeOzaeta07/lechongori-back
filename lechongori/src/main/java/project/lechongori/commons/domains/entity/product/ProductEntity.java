@@ -2,11 +2,14 @@ package project.lechongori.commons.domains.entity.product;
 
 import jakarta.persistence.*;
 import lombok.*;
-import project.lechongori.commons.domains.dto.product.ProductTypes;
+
+import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "product_lechongori")
 public class ProductEntity {
@@ -24,9 +27,12 @@ public class ProductEntity {
     @Column(name = "product_price")
     private Double productPrice;
 
-    @Column(name = "product_images")
-    private String[] productImages;
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "product_image")
+    private List<String> productImages;
 
+    @Enumerated
     @Column(name = "product_type")
     private ProductTypes productType;
 }
