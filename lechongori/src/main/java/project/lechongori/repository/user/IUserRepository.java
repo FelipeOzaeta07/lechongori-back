@@ -1,4 +1,7 @@
 package project.lechongori.repository.user;
 
-public interface IUserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import project.lechongori.commons.domains.entity.user.UserEntity;
+
+public interface IUserRepository extends JpaRepository<UserEntity, Integer> {
 }
