@@ -5,6 +5,8 @@ import lombok.*;
 import project.lechongori.commons.domains.entity.product.ProductEntity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
 @NoArgsConstructor
@@ -18,14 +20,12 @@ public class SalesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer saleId;
 
-    /*
-    @ElementCollection
-    @CollectionTable(name = "product_lechongori", joinColumns = @JoinColumn(name = "sale_id"))
-    @Column(name = "sale_product")
-    private ProductEntity saleProduct;
-*/
-    @Column(name = "sale_amount")
-    private Integer saleAmountForProduct;
+    @ManyToMany
+    @JoinTable(
+            name = "sales_product",
+            joinColumns = @JoinColumn(name = "sale_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<ProductEntity> productEntityList = new ArrayList<>();
 
     @Column(name = "sale_date")
     private LocalDate saleDate;

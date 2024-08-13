@@ -2,7 +2,9 @@ package project.lechongori.commons.domains.entity.product;
 
 import jakarta.persistence.*;
 import lombok.*;
+import project.lechongori.commons.domains.entity.sales.SalesEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder(builderMethodName = "newInstance")
@@ -32,7 +34,13 @@ public class ProductEntity {
     @Column(name = "product_image")
     private List<String> productImages;
 
+    @Column(name = "product_slug", unique = true)
+    private String productSlug;
+
     @Enumerated
     @Column(name = "product_type")
     private ProductTypes productType;
+
+    @ManyToMany(mappedBy = "productEntityList")
+    private List<SalesEntity> salesEntityList = new ArrayList<>();
 }
