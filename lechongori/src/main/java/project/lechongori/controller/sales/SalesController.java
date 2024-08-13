@@ -1,2 +1,4 @@
-package project.lechongori.controller.sales;public class SalesController {
+package project.lechongori.controller.sales;
+
+public class SalesController {
 }

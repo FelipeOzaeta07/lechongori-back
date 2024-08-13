@@ -1,2 +1,4 @@
-package project.lechongori.service.sales;public class SalesService {
+package project.lechongori.service.sales;
+
+public class SalesService {
 }
