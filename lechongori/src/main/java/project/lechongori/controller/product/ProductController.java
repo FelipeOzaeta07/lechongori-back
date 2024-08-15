@@ -19,14 +19,10 @@ import project.lechongori.service.product.ProductService;
 @Tag(name = "Sistema de Gestión de Producto", description = "Crear, visualizar, eliminar y actualizar Producto")
 @Log4j2
 public class ProductController {
-
     private final ProductService productService;
-
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-
-
     @Operation(summary = "Crear un nuevo Producto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = IGeneralResponse.CREATE_SUCCESS,
@@ -41,9 +37,7 @@ public class ProductController {
                     content = {@Content(mediaType = "application/json")})})
     @PostMapping(IProductEndPoint.CREATE_PRODUCT)
     public ResponseEntity<GenericResponseDTO> createProducts(@RequestBody ProductDTO productDTO) {
-        return this.productService.createProducts(productDTO);
-    }
-
+        return this.productService.createProducts(productDTO);}
     @Operation(summary = "Leer un Producto")
     @ApiResponses(value = {
             @ApiResponse(responseCode  = "200", description = IGeneralResponse.CREATE_SUCCESS,
@@ -58,6 +52,35 @@ public class ProductController {
                     content = {@Content(mediaType = "application/json")})})
     @GetMapping(IProductEndPoint.READ_PRODUCTS)
     public ResponseEntity<GenericResponseDTO> readProducts() {
-        return this.productService.readProducts();
-    }
+        return this.productService.readProducts();}
+    @Operation(summary = "Leer un Producto por Id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IGeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IGeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IGeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IGeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @GetMapping(IProductEndPoint.READ_PRODUCT)
+    public ResponseEntity<GenericResponseDTO> readProductId(@PathVariable Integer productId) {
+        return this.productService.readProductId(productId);}
+    @Operation(summary = "Eliminar un Producto")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode  = "200", description = IGeneralResponse.CREATE_SUCCESS,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = GenericResponseDTO.class))}),
+            @ApiResponse(responseCode  = "400", description = IGeneralResponse.CREATE_FAIL,
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = String.class))}),
+            @ApiResponse(responseCode  = "404", description = IGeneralResponse.NOT_FOUND,
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode  = "500", description = IGeneralResponse.INTERNAL_SERVER,
+                    content = {@Content(mediaType = "application/json")})})
+    @DeleteMapping(IProductEndPoint.DELETE_PRODUCT)
+    public ResponseEntity<GenericResponseDTO> deleteProducts(@PathVariable Integer productId) {
+        return this.productService.deleteProducts(productId);}
 }

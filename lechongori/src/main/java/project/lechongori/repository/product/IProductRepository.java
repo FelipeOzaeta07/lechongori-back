@@ -7,7 +7,6 @@ import project.lechongori.commons.domains.entity.product.ProductEntity;
 
 @Repository
 public interface IProductRepository extends JpaRepository<ProductEntity, Integer> {
-
     @Query(value = "SELECT MAX(product_id) AS end_id FROM product_lechongori;", nativeQuery = true)
     Integer lastProductId();
 }

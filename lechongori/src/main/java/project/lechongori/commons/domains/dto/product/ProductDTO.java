@@ -1,6 +1,7 @@
 package project.lechongori.commons.domains.dto.product;
 
 import lombok.*;
+import project.lechongori.commons.domains.entity.product.ProductTypes;
 
 import java.io.Serializable;
 
@@ -20,4 +21,8 @@ public class ProductDTO implements Serializable {
     private Double productPrice;
     //ruta de la imagen de un producto
     private String[] productImages;
+    //slung unico para un producto
+    private String productSlug;
+    //tipo de producto
+    private ProductTypes productType;
 }

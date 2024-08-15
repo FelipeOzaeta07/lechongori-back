@@ -6,5 +6,5 @@ public interface IProductEndPoint {
     String READ_PRODUCTS = "read-products";
     String READ_PRODUCT = "read-product/{productId}";
     String UPDATE_PRODUCT = "/update-product";
-    String DELETE_PRODUCT = "/delete-product";
+    String DELETE_PRODUCT = "/delete-product/{productId}";
 }
